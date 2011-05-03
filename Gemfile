@@ -1,4 +1,3 @@
-source "http://rubygems.org"
+source :rubygems
 
-# Specify your gem's dependencies in sunspot-rails-failover.gemspec
 gemspec
