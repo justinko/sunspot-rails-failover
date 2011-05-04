@@ -6,8 +6,7 @@ module Sunspot
         def self.handle(exception)
           case exception_handler
           when :hoptoad, nil
-            require 'hoptoad_notifier'
-            HoptoadNotifier.notify(exception)
+            HoptoadNotifier.notify(exception) if defined?(HoptoadNotifier)  
           when Class
             exception_handler.handle(exception)
           end
