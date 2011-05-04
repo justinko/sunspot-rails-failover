@@ -9,7 +9,9 @@ Gem::Specification.new do |s|
   s.author      = 'Justin Ko'
   s.email       = 'jko170@gmail.com'
   s.homepage    = 'https://github.com/justinko/sunspot-rails-failover'
-  s.description = s.summary = 'Failover support for sunspot_rails'
+  s.description = 'Failover support for sunspot_rails'
+  s.summary     = 'If the Sunspot slave session goes down, reads *and* writes ' \
+                  'are called upon the master session'
 
   s.files        = `git ls-files`.split("\n")
   s.test_files   = `git ls-files -- spec/*`.split("\n")
