@@ -1,7 +1,6 @@
 module Sunspot
   module SessionProxy
-    class MasterSlaveWithFailoverSessionProxy < MasterSlaveSessionProxy
-      
+    class MasterSlaveWithFailoverSessionProxy < MasterSlaveSessionProxy  
       attr_accessor :exception
       
       def commit
