@@ -11,7 +11,8 @@ module Sunspot
         def setup
           Sunspot.session = if Sunspot::Rails.configuration.has_master?
             Sunspot::SessionProxy::MasterSlaveWithFailoverSessionProxy.new(
-              Sunspot::Session.new(master_config), Sunspot::Session.new(slave_config)
+              SessionProxy::ThreadLocalSessionProxy.new(master_config),
+              SessionProxy::ThreadLocalSessionProxy.new(slave_config)
             )
           else
             Sunspot::SessionProxy::ThreadLocalSessionProxy.new(slave_config)
@@ -21,17 +22,11 @@ module Sunspot
       private
       
         def slave_config
-          build_config('solr', 'url')
+          Sunspot::Rails.send :slave_config, Sunspot::Rails.configuration
         end
         
         def master_config
-          build_config('master_solr', 'url')
-        end
-        
-        def build_config(*keys)
-          Sunspot::Configuration.build.tap do |config|
-            config.solr.url = Sunspot::Rails.configuration.send :user_configuration_from_key, *keys
-          end
+          Sunspot::Rails.send :master_config, Sunspot::Rails.configuration
         end
       end
     end
