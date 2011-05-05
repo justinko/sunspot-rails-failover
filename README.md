@@ -15,9 +15,10 @@ Your config/sunspot.yml file should look something like this:
 
     development:
       master_solr:
-        url: http://localhost:8984/solr
+        host: ...
+        port: ...
       solr:
-        url: http://localhost:8985/solr
+        host: ...
         
 NOTE: You do *not* have to have a master session. If a master session is
 not detected, sunspot-rails-failover will default to what sunspot_rails
