@@ -9,24 +9,24 @@ module Sunspot
         attr_accessor :exception_handler
         
         def setup
-          Sunspot.session = if Sunspot::Rails.configuration.has_master?
-            Sunspot::SessionProxy::MasterSlaveWithFailoverSessionProxy.new(
+          Sunspot.session = if Rails.configuration.has_master?
+            SessionProxy::MasterSlaveWithFailoverSessionProxy.new(
               SessionProxy::ThreadLocalSessionProxy.new(master_config),
               SessionProxy::ThreadLocalSessionProxy.new(slave_config)
             )
           else
-            Sunspot::SessionProxy::ThreadLocalSessionProxy.new(slave_config)
+            SessionProxy::ThreadLocalSessionProxy.new(slave_config)
           end
         end
         
       private
       
         def slave_config
-          Sunspot::Rails.send :slave_config, Sunspot::Rails.configuration
+          Rails.send :slave_config, Rails.configuration
         end
         
         def master_config
-          Sunspot::Rails.send :master_config, Sunspot::Rails.configuration
+          Rails.send :master_config, Rails.configuration
         end
       end
     end

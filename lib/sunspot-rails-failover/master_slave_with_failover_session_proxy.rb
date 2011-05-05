@@ -21,7 +21,7 @@ module Sunspot
       def with_exception_handling
         yield
       rescue Exception => exception
-        Sunspot::Rails::Failover::ExceptionHandlerAdapter.handle(exception)
+        Rails::Failover::ExceptionHandlerAdapter.handle(exception)
         self.exception = exception
         false
       end
