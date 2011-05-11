@@ -46,7 +46,11 @@ exception. In `initializers/sunspot.rb`:
     
     Sunspot::Rails::Failover.exception_handler = MyExceptionHandler
     Sunspot::Rails::Failover.setup
+
+## License
+
+sunspot-rails-failover is released under the MIT license. See LICENSE for details.
     
 ## Copyright
 
-Copyright (c) 2011 Justin Ko. See LICENSE for details.
+Copyright (c) 2011 Justin Ko
