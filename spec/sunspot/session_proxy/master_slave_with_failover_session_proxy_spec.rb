@@ -34,6 +34,14 @@ module Sunspot
             master.should_not_receive(:search)
             proxy.search
           end
+          
+          it "returns a Sunspot::Search::StandardSearch object" do
+            connection = double
+            connection.stub(:request)
+            Sunspot::Session.any_instance.stub(:connection).and_return(connection)
+            result = proxy.search(Searchable)
+            result.should be_a(Sunspot::Search::StandardSearch)
+          end
         end
     
         context 'with an error on the slave session' do
