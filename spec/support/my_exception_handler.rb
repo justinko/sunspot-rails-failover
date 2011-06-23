@@ -1,4 +1,5 @@
 class MyExceptionHandler
-  def handle
+  def self.handle(ex)
+    raise ex
   end
 end
